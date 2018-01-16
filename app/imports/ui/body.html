@@ -1,0 +1,17 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Asset List</h1>
+    </header>
+ 
+    <ul>
+      {{#each assets}}
+        {{> asset}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+ 
+<template name="asset">
+  <li>{{output}}</li>
+</template>
