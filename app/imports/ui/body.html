@@ -1,0 +1,17 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Smart Economy Data</h1>
+    </header>
+ 
+    <ul>
+      {{#each tokens}}
+        {{> token}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+ 
+<template name="token">
+  <li>{{output}}</li>
+</template>
