@@ -1,24 +1,33 @@
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
  
 import './body.html';
 
-if(Meteor.isServer){
-  Meteor.methods({
-    'getNEO': function () {
-      const data = HTTP.get('https://api.coinmarketcap.com/v1/ticker/neo/')
-      console.log(data);
-      return data;
-      }
-  })
-  
-  neo = Meteor.call('getNEO');
-  console.log(neo);
-}
+Assets = new Mongo.Collection('assets');
+
+Sesssion.setDefault('searching', false);
+
+Tracker.autorun(function(){
+  if(Session.get('query')){
+  	var searchHandle = Meteor.subscribe('assetSearch', Session.get('query'));
+  	Session.set('searching', ! searchHandle.ready());
+  }
+});
+
+Template.body.events({
+  'submit form': function(event, template){
+  	event.preventDefault();
+  	var query = template.$('input[type=text]').val();
+  	if(query)
+  	  Session.set('query', query);
+  }
+});
  
 Template.body.helpers({
-  assets: [
-    { output: 'This is asset 1' },
-    { output: 'This is asset 2' },
-    { output: 'This is asset 3' },
-  ],
+  assets: function(){
+  	return Assets.find();
+  },
+  searching: function(){
+  	return Session.get('searching');
+  }
 });
