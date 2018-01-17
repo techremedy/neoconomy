@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "coinmarketcap": "^0.2.0",
     "meteor-node-stubs": "^0.3.2"
   }
 }
