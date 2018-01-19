@@ -1,5 +1,29 @@
 <ion-view view-title="Glance">
 	<ion-content>
+        <div class="row header">
+          <div class="col">Name</div>
+          <div class="col">Ticker</div>
+          <div class="col">Current Price (USD)</div>
+          <div class="col">Global Rank</div>
+          <div class="col">Market Cap (USD)</div>
+          <div class="col">24H Volume</div>
+          <div class="col">Available Supply</div>
+          <div class="col">Total Supply</div>
+          <div class="col">Max Supply</div>
+          <div class="col">%Change 24H</div>
+        </div>
+        <div class="row" ng-repeat="glance in glance.data | orderBy: 'neo_rank'">
+          <div class="col"><img width="18" ng-src="https://files.coinmarketcap.com/static/img/coins/32x32/{{glance.cmc_id}}.png"> - {{glance.name}}</div>
+          <div class="col">{{glance.symbol}}</div>
+          <div class="col">{{glance.price_USD}}</div>
+          <div class="col">{{glance.global_rank}}</div>
+          <div class="col">{{glance.market_cap_usd}}</div>
+          <div class="col">{{glance.volume_usd_24}}</div>
+          <div class="col">{{glance.available_supply}}</div>
+          <div class="col">{{glance.total_supply}}</div>
+          <div class="col">{{glance.max_supply}}</div>
+          <div class="col">{{glance.percent_change_24h}}</div>
+        </div>
 
 	</ion-content>
 </ion-view>

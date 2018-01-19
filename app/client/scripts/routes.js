@@ -7,7 +7,7 @@ export default class RoutesConfig extends Config {
 	configure() {
 		this.$stateProvider
 			.state('tab', {
-				url: '/tab',
+				url: '/tabs',
 				abstract: true,
 				templateUrl: tabsTemplateUrl
 			})
@@ -15,7 +15,8 @@ export default class RoutesConfig extends Config {
 				url: '/glance',
 				views: {
 					'tab-glance': {
-						templateUrl: glanceTemplateUrl
+						templateUrl: glanceTemplateUrl,
+						controller: 'GlanceCtrl as glance'
 					}
 				}
 			});

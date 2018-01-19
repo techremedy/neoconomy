@@ -9,6 +9,8 @@ import Loader from 'angular-ecmascript/module-loader';
 import { Meteor } from 'meteor/meteor';
 
 //modules
+import GlanceCtrl from '../controllers/glance.controller';
+import CalendarFilter from '../filters/calendar.filter';
 import RoutesConfig from '../routes';
 const App = 'Neoconomy';
 
@@ -19,14 +21,12 @@ Angular.module(App, [
 ]);
 
 new Loader(App)
+	.load(GlanceCtrl)
+	.load(CalendarFilter)
 	.load(RoutesConfig);
 
 //startup
-if (Meteor.isCordova){
-	Angular.element(document).on('deviceready', onReady);
-} else {
-	Angular.element(document).ready(onReady);
-}
+Angular.element(document).ready(onReady);
 
 function onReady(){
 	Angular.bootstrap(document, [App]);
